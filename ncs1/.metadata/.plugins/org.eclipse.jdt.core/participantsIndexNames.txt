@@ -3,3 +3,5 @@ D:\웹개발학원\ncs1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2511592
 \HRD_1\src
 D:\웹개발학원\NCS\ncs1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2511592962.index
 \HRD_1\src
+D:\NCS\ncs1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2511592962.index
+\HRD_1\src
