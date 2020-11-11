@@ -1,0 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="DBPKG.DBcon" %>
+<%@ page import="java.util.*, java.text.*, java.lang.*, java.net.*" %>
+<%@ include file="admin_header.jsp" %>
+<style>
+
+</style>
+<%@ include file="admin_nav.jsp" %>

@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+.main_help { width: 960px; margin: 25px auto; font-size: 20px; }
+.main_help ol { padding-top: 5px; }
+.tb { display: table; border: 1; border-color: #333; width: 960px; text-align: center;}
+.tb tr { display: table-row; }
+.tb td, .tb th { display: table-cell; padding: 10px; }
+.tb th { width: 480px; font-size: 18px;}

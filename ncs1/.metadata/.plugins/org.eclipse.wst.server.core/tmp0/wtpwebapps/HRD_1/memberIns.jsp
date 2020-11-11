@@ -7,13 +7,8 @@
 <%@ page import="DBPKG.DBcon" %>
 <%@ page import="java.util.*, java.text.*" %>
 <%@ include file="admin_header.jsp" %>
+<link rel="stylesheet" href="./css/table.css" />
 <style>
-.main_help { width: 960px; margin: 25px auto; font-size: 20px; }
-.main_help ol { padding-top: 5px; }
-.tb { display: table; border: 1; border-color: #333; width: 960px; text-align: center;}
-.tb tr { display: table-row; }
-.tb td, .tb th { display: table-cell; padding: 10px; }
-.tb th { width: 480px; }
 button {display: block; float: left; width: 120px; line-height: 36px; text-align: center; margin-right: 25px; margin-left: 25px; border-radius: 5px ;}
 button:first-child { margin-left: 350px;}
 input, select { border: 1px solid #333; line-height: 24px; padding-left: 5px;}

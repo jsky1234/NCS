@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="DBPKG.DBcon" %>
+<%@ page import="java.util.*, java.text.*, java.lang.*, java.net.*" %>
+<%@ include file="admin_header.jsp" %>
+<style>
+
+</style>
+<%@ include file="admin_nav.jsp" %>
+<main class="content">
+	<section class="page" id="page1">
+		<h2 class="page_tit">회원목록조회/수정</h2>
+		<div class="main_help">
+			<table class="tb" border="1" cellpadding="10">
+				<thead>
+					<tr>
+						<th class="custno">회원번호</th>
+						<th class="custname">회원성명</th>
+						<th class="phone">전화번호</th>
+						<th class="address">주소</th>
+						<th class="joindae">가입일</th>
+						<th class="grade">고객등급</th>
+						<th class="city">거주지역</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%
+				DBcon db;
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs;
+				int custno;
+				String custname, phone, address, joindate, grade, city;
+				
+				try {
+					conn = DBcon.getConnection();
+					String sql = "SELECT * FROM member_tbl_02";
+					
+					pstmt = conn.prepareStatement(sql);
+					rs = pstmt.executeQuery();
+					
+					while(rs.next()) {
+						custno = rs.getInt("custno");
+						custname = rs.getString("custname");
+						phone = rs.getString("phone");
+						address = rs.getString("address");
+					}
+				}
+				%>
+					<tr>
+						<td class="custno">
+							<a href="memberEdit.jsp?custno=<%=custno%>"><%=custno %></a>
+						</td>
+						<td class="c"></td>
+						<td class="c"></td>
+						<td class="c"></td>
+						<td class="c"></td>
+						<td class="c"></td>
+						<td class="c"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</main>
