@@ -2,13 +2,19 @@
 
 ### 2020/11/09
 
-- `create repository`
-- `add ncs1 folder`
-- `add admin.jsp`
+- `Create repository`
+- `Add ncs1 folder`
+- `Add admin.jsp`
 <br>
 
 ### 2020/11/10
 
 - `admin.jsp modularity`
-- `add README.md`
+- `Add README.md`
+<br>
+
+### 2020/11/11
+
+- `Implement DB Connection`
+- `Add memberIns.jsp, memberInsPro.jsp for member insert function`
 <br>
