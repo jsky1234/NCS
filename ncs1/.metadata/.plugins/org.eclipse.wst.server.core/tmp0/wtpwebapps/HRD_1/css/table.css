@@ -7,3 +7,8 @@
 .tb td, .tb th { display: table-cell; padding: 10px; }
 .tb th { width: 480px; }
 .tb td { font-size: 14px;}
+
+input, select { border: 1px solid #333; line-height: 24px; padding-left: 5px;}
+.btn { display: block; float: left; width: 120px; line-height: 36px; text-align: center; 
+font-size:16px; margin-right: 25px; margin-left: 25px; padding-right: 5px;  border-radius: 5px; cursor: pointer;}
+.btn:first-child { margin-left: 350px;}

@@ -58,7 +58,9 @@
 						String sdate = joindate.substring(0,10);
 					%>
 					<tr>
-						<td class="custno"><%=custno %></td>
+						<td class="custno">
+							<a href="memberEdit.jsp?custno=<%=custno%>"><%=custno %></a>
+						</td>
 						<td class="custname"><%=custname %></td>
 						<td class="phone"><%=phone %></td>
 						<td class="address"><%=address %></td>

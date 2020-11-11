@@ -1,0 +1,141 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="DBPKG.DBcon" %>
+<%@ page import="java.util.*, java.text.*, java.lang.*, java.net.*" %>
+<%@ include file="admin_header.jsp" %>
+<link rel="stylesheet" href="./css/table.css" />
+<%@ include file="admin_nav.jsp" %>
+<% 
+Connection conn = null;
+PreparedStatement pstmt = null;
+ResultSet rs;
+
+String custno = request.getParameter("custno");
+String custname, phone, address, joindate, grade, city;
+
+try {
+	conn = DBcon.getConnection();
+	String sql = "SELECT * FROM member_tbl_02 WHERE custno="+custno;
+	pstmt = conn.prepareStatement(sql);
+	rs = pstmt.executeQuery();
+	
+	while(rs.next()) {
+		custname = rs.getString("custname");
+		phone = rs.getString("phone");
+		address = rs.getString("address");
+		joindate = rs.getString("joindate");
+		grade = rs.getString("grade");
+		city = rs.getString("city");
+		
+		joindate = joindate.substring(0,10);
+%>
+<main class="content">
+	<section class="page" id="page1">
+		<h2 class="page_tit">회원정보수정</h2>
+		<div class="main_help">
+			<form name="register1" id="register1" action="memberEditPro.jsp" method="get">
+				<table class="tb">
+					<tbody>
+						<tr>
+							<th><label for="custno">회원번호(자동발생)</label></th>
+							<td><input type="text" name="custno" id="custno" value="<%=custno%>" /></td>
+						</tr>
+						<tr>
+							<th><label for="custname">회원성명</label></th>
+							<td><input type="text" name="custname" id="custname" value="<%=custname%>" /></td>
+						</tr>
+						<tr>
+							<th><label for="phone">회원전화</label></th>
+							<td><input type="text" name="phone" id="phone" value="<%=phone %>" /></td>
+						</tr>
+						<tr>
+							<th><label for="address">회원주소</label></th>
+							<td><input type="text" name="address" id="address" value="<%=address%>" /></td>
+						</tr>
+						<tr>
+							<th><label for="joindate">가입일자</label></th>
+							<td><input type="text" name="joindate" id="joindate" value="<%=joindate%>"/></td>
+						</tr>
+						<tr>
+							<th><label for="grade">고객등급(A:VIP, B:일반, C:직원)</label></th>
+							<td><input type="text" name="grade" id="grade" value="<%=grade%>"/></td>
+						</tr>
+						<tr>
+							<th><label for="city">도시코드</label></th>
+							<td><input type="text" name="city" id="city" value=<%=city%> /></td>
+						</tr>
+						<td>
+							<input class="btn" type="button" id="submit_btn" value="수정" />
+							<input class="btn" type="button" id="search_btn" value="조회" />
+						</td>
+					</tbody>
+				</table>
+			</form>
+			<script>
+			var form = document.register1;
+			var submit_btn = document.getElementById("submit_btn");
+			var search_btn = document.getElementById("search_btn");
+			var custname = form.custname;
+			var phone = form.phone;
+			var address = form.address;
+			var grade = form.grade;
+			var city = form.city;
+			
+			submit_btn.addEventListener("click", function(e){
+				if(custname.value == "") {
+					alert("회원성명이 입력되지 않았습니다.");
+					custname.focus();
+					return;
+				}
+				if(phone.value == "") {
+					alert("전화번호가 입력되지 않았습니다.");
+					phone.focus();
+					return;	
+				}
+				if(address.value == "") {
+					alert("회원주소가 입력되지 않았습니다.");
+					address.focus();
+					return;
+				}
+				if(grade.value == "") {
+					alert("회원등급이 선택되지 않았습니다.");
+					grade.focus();
+					return;
+				}
+				if(city.value == "") {
+					alert("도시코드가 입력되지 않았습니다.");
+					city.focus();
+					return;
+				}
+				if(custname.value != "" && phone.value != "" && address.value != "" && grade.value != "" && city.value != "") {
+					form.submit();
+				}
+			});
+			
+			search_btn.addEventListener("click", function(){
+				location.href = "memberList.jsp"
+			});
+			</script>
+		</div>
+	</section>
+</main>
+<%
+	}
+	
+	} catch(Exception e) {
+		System.out.println("ProductBean error : "+e);
+	} finally {
+		try {
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		} catch(Exception e) {
+			//핸들 에러 프린트
+			System.out.println("DB Close error : "+e);
+		}
+	}
+%>
+<%@ include file="admin_footer.jsp" %>

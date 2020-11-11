@@ -9,9 +9,7 @@
 <%@ include file="admin_header.jsp" %>
 <link rel="stylesheet" href="./css/table.css" />
 <style>
-button {display: block; float: left; width: 120px; line-height: 36px; text-align: center; margin-right: 25px; margin-left: 25px; border-radius: 5px ;}
-button:first-child { margin-left: 350px;}
-input, select { border: 1px solid #333; line-height: 24px; padding-left: 5px;}
+
 </style>
 <%@ include file="admin_nav.jsp" %>
 <% 
@@ -82,17 +80,19 @@ String sdate = simple.format(date);
 							<td><input type="text" name="city" id="city" /></td>
 						</tr>
 						<td colspan="2">
-							<input type="submit" id="submit_btn" value="등록" />
-							<input type="button" id="search_btn" value="조회" />
+							<input class="btn" type="button" id="submit_btn" value="등록" />
+							<input class="btn" type="button" id="search_btn" value="조회" />
 						</td>
 					</tbody>
 				</table>
 			</form>
 			<script>
+			var form = document.register1
 			var submit_btn = document.getElementById("submit_btn");
 			var search_btn = document.getElementById("search_btn");
 			var custname = form.custname
-			var phone = form.address
+			var phone = form.phone
+			var address = form.address
 			var grade = form.grade
 			var city = form.city			
 			
@@ -105,7 +105,7 @@ String sdate = simple.format(date);
 				if(phone.value == "") {
 					alert("전화번호가 입력되지 않았습니다.");
 					phone.focus();
-					return;					
+					return;	
 				}
 				if(address.value == "") {
 					alert("회원주소가 입력되지 않았습니다.");
@@ -128,7 +128,7 @@ String sdate = simple.format(date);
 			});
 			
 			search_btn.addEventListener("click", function(){
-				location.href = memberSearch.jsp
+				location.href = "memberList.jsp"
 			});
 			</script>
 		</div>

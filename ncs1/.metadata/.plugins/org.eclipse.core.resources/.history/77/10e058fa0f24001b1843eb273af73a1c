@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="DBPKG.DBcon" %>
+<%@ page import="java.util.*, java.text.*, java.lang.*, java.net.*" %>
+<%@ include file="admin_header.jsp" %>
+<link rel="stylesheet" href="./css/table.css" />
+<%@ include file="admin_nav.jsp" %>
+<% 
+Connection conn = null;
+PreparedStatement pstmt = null;
+ResultSet rs;
+
+String custno = request.getParameter("custno");
+String custname, phone, address, joindate, grade, city;
+
+try {
+	conn = DBcon.getConnection();
+	String sql = "SELECT * FROM member_tbl_02 WHERE custno="+custno;
+	pstmt = conn.prepareStatement(sql);
+	rs = pstmt.executeQuery();
+	
+	while(rs.next()) {
+		custname = rs.getString("custname");
+		phone = rs.getString("phone");
+		address = rs.getString("address");
+		joindate = rs.getString("joindate");
+		grade = rs.getString("grade");
+		city = rs.getString("city");
+		
+		joindate = joindate.substring(0,10);
+%>
+<main class="content">
+	<section class="page" id="page1">
+		<h2 class="page_tit">회원정보수정</h2>
+		<div class="main_help">
+			<form name="register1" id="register1" action="memberEditPro.jsp" method="get">
+				<table class="tb">
+					<tbody>
+						<tr>
+							<th><label for="custno">회원번호(자동발생)</label></th>
+							<td><input type="text" name="custno" id="custno" value="<%=custno%>" /></td>
+						</tr>
+						<tr>
+							<th><label for="custname">회원성명</label></th>
+							<td><input type="text" name="custname" id="custname" value="<%=custname%>" /></td>
+						</tr>
+						<tr>
+							<th><label for="phone">회원전화</label></th>
+							<td><input type="text" name="phone" id="phone" value="<%=phone %>" /></td>
+						</tr>
+						<tr>
+							<th><label for="address">회원주소</label></th>
+							<td><input type="text" name="address" id="address" value="<%=address%>" /></td>
+						</tr>
+						<tr>
+							<th><label for=""></label></th>
+							<td><input type="text" /></td>
+						</tr>
+						<tr>
+							<th><label for=""></label></th>
+							<td><input type="text" /></td>
+						</tr>
+						<tr>
+							<th><label for=""></label></th>
+							<td><input type="text" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</section>
+</main>
+	}
+}
